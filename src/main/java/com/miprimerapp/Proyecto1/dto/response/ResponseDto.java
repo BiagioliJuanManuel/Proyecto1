@@ -10,5 +10,5 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class ResponseDto {
-    private List<String> nombres;
+    private String message;
 }
