@@ -9,10 +9,14 @@ import java.util.List;
 @Repository
 public class PersonasRepositoryImp implements IPersonasRepository {
 
-    private List<Persona> dataBase = new ArrayList<>();
+    //final: que sea constante en JAVA,
+    // solo significa que no puedo cambiar la referencia en memoria del objeto,
+    // si puedo modificar los objetos que contenga dentro.
+    private final List<Persona> dataBase = new ArrayList<>();
 
     @Override
     public Persona save(Persona persona) {
+        persona.setId(dataBase.size()+1);
         dataBase.add(persona);
         return persona;
     }
@@ -20,5 +24,11 @@ public class PersonasRepositoryImp implements IPersonasRepository {
     @Override
     public List<Persona> findAll() {
         return dataBase;
+    }
+
+    @Override
+    public List<Persona> findByAge(int edad) {
+        return dataBase.stream()
+                .filter(persona -> persona.getEdad()>=edad).toList();
     }
 }

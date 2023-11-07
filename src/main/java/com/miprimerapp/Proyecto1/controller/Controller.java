@@ -1,6 +1,7 @@
 package com.miprimerapp.Proyecto1.controller;
 
-import com.miprimerapp.Proyecto1.dto.PersonaDto;
+import com.miprimerapp.Proyecto1.dto.request.EdadDto;
+import com.miprimerapp.Proyecto1.dto.request.PersonaSaveDto;
 import com.miprimerapp.Proyecto1.dto.response.ResponseDto;
 import com.miprimerapp.Proyecto1.service.IPersonasService;
 import com.miprimerapp.Proyecto1.service.PersonasServiceImp;
@@ -140,7 +141,7 @@ public class Controller {
      */
 
    @PostMapping("/guardar")
-    public ResponseEntity<?> agregarPersona(@RequestBody PersonaDto persona){
+    public ResponseEntity<?> agregarPersona(@RequestBody PersonaSaveDto persona){
        ResponseDto respuesta = service.guardarPersona(persona);
         return new ResponseEntity<>(respuesta, HttpStatus.OK);
     }
@@ -150,4 +151,14 @@ public class Controller {
        return new ResponseEntity<>(service.buscarTodos(), HttpStatus.OK);
     }
 
+    /*  // ----------- CLASE 25/09 ------------ //
+    *
+    *   clase de repaso, nuevo feature buscar por edad.
+     */
+
+    @GetMapping("/buscar/{edad}")
+    public ResponseEntity<?> obtenerPorEdad(@PathVariable int edad){
+
+        return new ResponseEntity<>(service.buscarPorEdad(new EdadDto(edad)),HttpStatus.OK);
+    }
 }
