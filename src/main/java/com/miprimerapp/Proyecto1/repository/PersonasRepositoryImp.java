@@ -31,4 +31,9 @@ public class PersonasRepositoryImp implements IPersonasRepository {
         return dataBase.stream()
                 .filter(persona -> persona.getEdad()>=edad).toList();
     }
+
+    @Override
+    public Persona findById(int id) {
+        return dataBase.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
+    }
 }

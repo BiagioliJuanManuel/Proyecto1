@@ -3,6 +3,7 @@ package com.miprimerapp.Proyecto1.controller;
 import com.miprimerapp.Proyecto1.dto.request.EdadDto;
 import com.miprimerapp.Proyecto1.dto.request.PersonaSaveDto;
 import com.miprimerapp.Proyecto1.dto.response.ResponseDto;
+import com.miprimerapp.Proyecto1.exception.PersonaNotFoundException;
 import com.miprimerapp.Proyecto1.service.IPersonasService;
 import com.miprimerapp.Proyecto1.service.PersonasServiceImp;
 import org.springframework.http.HttpStatus;
@@ -161,4 +162,25 @@ public class Controller {
 
         return new ResponseEntity<>(service.buscarPorEdad(new EdadDto(edad)),HttpStatus.OK);
     }
+
+    /*
+     *       ------ Clase 09/10 ------
+     */
+
+    /*
+    *   A Diferencia de la anotación ResponseStatus, ExceptionHandler se utiliza a nivel controlador
+    *   por lo que solo podemos y debemos usarla a nivel método, para tratar excepciónes en tiempo de ejecución.
+    *   A su vez @ExceptionHandler actuaria como un catch.
+
+            @ExceptionHandler(PersonaNotFoundException.class)
+            public ResponseEntity<?> personaNotFoundException(PersonaNotFoundException ex){
+                return null;
+            }
+    *
+    *   Como tratar las excepciónes a nivel controlador, en el mismo controlador de Routes, quedaría todo mezclado
+    *   en código spaghetti, utilizaríamos otro controlador especifico para los casos de excepciónes, con la anotación
+    *   @ControllerAdvice
+    */
+
+
 }

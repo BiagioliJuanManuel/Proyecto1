@@ -12,4 +12,6 @@ public interface IPersonasRepository {
 
     List<Persona> findByAge(int edad);
 
+    Persona findById(int id);
+
 }
